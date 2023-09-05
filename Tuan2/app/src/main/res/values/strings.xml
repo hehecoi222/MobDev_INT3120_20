@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">Donation 1.5</string>
     <string name="app_title">Welcome Homer</string>
     <string name="pay_method">Select Pay Method</string>
     <string name="amount">Amount</string>
