@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="radio_btn_size">200dp</dimen>
+    <dimen name="zero_spacing">0dp</dimen>
+    <dimen name="section_spacing">25dp</dimen>
+    <dimen name="padding_around">16dp</dimen>
+    <dimen name="ele_lv1">1dp</dimen>
+    <dimen name="ele_lv2">3dp</dimen>
+    <dimen name="ele_lv3">6dp</dimen>
+    <dimen name="ele_lv4">8dp</dimen>
+    <dimen name="ele_lv5">12dp</dimen>
+    <dimen name="absolute_fab">16dp</dimen>
+</resources>
