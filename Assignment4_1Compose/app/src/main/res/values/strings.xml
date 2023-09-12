@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Donation 1.5</string>
+    <string name="app_title">Welcome Homer</string>
+    <string name="pay_method">Select Pay Method</string>
+    <string name="amount">Amount</string>
+    <string name="donate_btn">Donate</string>
+    <string name="total">Total so Far: %d</string>
+</resources>

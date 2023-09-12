@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/coordinator_topbar"
+        app:layout_constraintTop_toTopOf="parent"
+        android:clipChildren="false">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:title="@string/app_name"
+                app:titleTextColor="?attr/colorOnPrimary"
+                android:elevation="@dimen/ele_lv2"
+                app:menu="@menu/top_app_bar"
+                android:outlineAmbientShadowColor="?attr/colorOutline"
+                android:outlineSpotShadowColor="?attr/colorOutline"
+                style="@style/Widget.MaterialComponents.AppBarLayout.Primary">
+
+            </com.google.android.material.appbar.MaterialToolbar>
+        </com.google.android.material.appbar.AppBarLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <LinearLayout
+        android:id="@+id/main_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/coordinator_topbar"
+        android:orientation="vertical"
+        android:padding="@dimen/padding_around">
+
+        <TextView
+            android:id="@+id/sub_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/sub_title"
+            style="@style/TextAppearance.Material3.HeadlineSmall"
+            android:textColor="?attr/colorOnSurface"
+            android:layout_marginBottom="@dimen/section_spacing">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/option_des"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/option_des"
+            style="@style/TextAppearance.Material3.BodyLarge"
+            android:textColor="?attr/colorOnSurfaceVariant">
+
+        </TextView>
+
+        <TableLayout
+            android:id="@+id/method_amount_slt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="0"
+            android:shrinkColumns="1"
+            android:layout_marginBottom="@dimen/section_spacing">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/section_spacing">
+                
+                <RadioGroup
+                    android:id="@+id/method_slt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="0"
+                    android:checkedButton="@id/paypal_opt"
+                    android:layout_margin="@dimen/zero_spacing"
+                    android:padding="@dimen/zero_spacing">
+                    
+                    <RadioButton
+                        android:id="@+id/paypal_opt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="false"
+                        android:text="@string/paypal_opt"
+                        android:layout_margin="@dimen/zero_spacing">
+
+                    </RadioButton>
+
+                    <RadioButton
+                        android:id="@+id/direct_opt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="false"
+                        android:text="@string/direct_opt"
+                        android:layout_margin="@dimen/zero_spacing">
+
+                    </RadioButton>
+                </RadioGroup>
+
+                <NumberPicker
+                    android:id="@+id/amount_slt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1">
+
+                </NumberPicker>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ProgressBar
+                    android:id="@+id/progress_bar"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_span="2"
+                    android:progress="25">
+
+                </ProgressBar>
+            </TableRow>
+        </TableLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            
+            <TextView
+                android:id="@+id/amount_des"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/amount_des"
+                style="@style/TextAppearance.Material3.BodyLarge"
+                android:textColor="?attr/colorOnSurfaceVariant">
+                
+            </TextView>
+            
+            <EditText
+                android:id="@+id/amount_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_toEndOf="@id/donate_btn"
+                android:importantForAutofill="no"
+                android:autofillHints=""
+                android:inputType="number"
+                android:hint="@string/amount_des">
+
+            </EditText>
+            
+            <Button
+                android:id="@+id/donate_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/amount_edit"
+                android:layout_alignParentStart="true"
+                android:text="@string/donate_btn"
+                android:textAllCaps="true"
+                android:elevation="@dimen/ele_lv1"
+                android:outlineAmbientShadowColor="?attr/colorOutline"
+                android:outlineSpotShadowColor="?attr/colorOutline">
+
+            </Button>
+
+            <TextView
+                android:id="@+id/total"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/total"
+                android:layout_alignBottom="@id/donate_btn"
+                android:layout_alignParentEnd="true"
+                android:layout_toStartOf="@id/amount_edit"
+                android:textAlignment="center">
+
+            </TextView>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_email"
+        app:srcCompat = "@drawable/baseline_email_24"
+        android:contentDescription="@string/fab_des"
+        android:layout_margin="@dimen/absolute_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:backgroundTint="?attr/colorPrimary"
+        app:shapeAppearanceOverlay="@style/fab_3_rounded">
+
+    </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

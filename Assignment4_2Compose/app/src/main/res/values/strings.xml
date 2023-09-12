@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Essentials of Developing Android 5.0</string>
+    <string name="name_tf_label">Enter your Name</string>
+    <string name="phone_tf_label">Enter your phone number</string>
+    <string name="summary">Your order</string>
+    <string name="exit_btn">EXIT</string>
+    <string name="order_btn">SMS - PLACE YOUR ORDER</string>
+</resources>
