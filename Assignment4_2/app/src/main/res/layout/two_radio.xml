@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RadioGroup
+        android:id="@+id/cheese_slt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:checkedButton="@id/cheese_norm_opt">
+        
+        <RadioButton
+            android:id="@+id/cheese_norm_opt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cheese_norm_opt"
+            android:checked="false">
+
+        </RadioButton>
+        <RadioButton
+            android:id="@+id/cheese_double_opt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cheese_double_opt"
+            android:checked="false">
+
+        </RadioButton>
+        <RadioButton
+            android:id="@+id/cheese_none_opt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cheese_none_opt"
+            android:checked="false">
+
+        </RadioButton>
+    </RadioGroup>
+    <RadioGroup
+        android:id="@+id/shape_slt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:checkedButton="@id/shape_square_opt">
+
+        <RadioButton
+            android:id="@+id/shape_square_opt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/shape_square_opt"
+            android:checked="false">
+
+        </RadioButton>
+        <RadioButton
+            android:id="@+id/shape_round_opt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/shape_round_opt"
+            android:checked="false">
+
+        </RadioButton>
+    </RadioGroup>
+</LinearLayout>

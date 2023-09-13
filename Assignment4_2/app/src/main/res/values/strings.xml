@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Essentials of Mobile Development</string>
+    <string name="name_field_label">Enter your Name</string>
+    <string name="phone_field_label">Enter your Phone Number</string>
+    <string name="cheese_norm_opt">Cheese</string>
+    <string name="cheese_double_opt">2 x Cheese</string>
+    <string name="cheese_none_opt">None</string>
+    <string name="shape_round_opt">Round</string>
+    <string name="shape_square_opt">Square</string>
+    <string name="addon_pepperoni">Pepperoni</string>
+    <string name="addon_mushroom">Mushroom</string>
+    <string name="addon_veggies">Veggies</string>
+    <string name="order_label">Your order:</string>
+    <string name="exit_btn">Exit</string>
+    <string name="send_btn">SMS - Place Your Order</string>
+</resources>
