@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.Week4OnClass" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Theme.Week4OnClass.Dark" parent="android:Theme.Material" />
+</resources>

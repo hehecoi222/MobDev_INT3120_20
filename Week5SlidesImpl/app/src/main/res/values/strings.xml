@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Menu With Intent</string>
+    <string name="screen_1_text">Hello World</string>
+    <string-array name="menu_options">
+        <item>Old Assignment</item>
+        <item>This is a Shopee Link</item>
+        <item>Call Police</item>
+        <item>Send Broadcast</item>
+    </string-array>
+    <string-array name="context_menu_options">
+        <item>Add 1</item>
+        <item>Subtract 1</item>
+    </string-array>
+    <string name="long_pressed_btn">Long press me for actions</string>
+    <string name="long_pressed_label">Long press for actions</string>
+    <string name="show_here">Dropdown will show here</string>
+    <string name="intent_send_btn">Send</string>
+</resources>

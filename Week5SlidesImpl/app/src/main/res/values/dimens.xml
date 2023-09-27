@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="ele_lv1">1dp</dimen>
+    <dimen name="ele_lv2">3dp</dimen>
+    <dimen name="ele_lv3">6dp</dimen>
+    <dimen name="ele_lv4">8dp</dimen>
+    <dimen name="ele_lv5">12dp</dimen>
+</resources>

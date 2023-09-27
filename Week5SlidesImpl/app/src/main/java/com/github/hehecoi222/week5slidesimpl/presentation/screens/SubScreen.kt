@@ -1,4 +1,4 @@
-package com.github.hehecoi222.week4slideimpl.presentation.screens
+package com.github.hehecoi222.week5slidesimpl.presentation.screens
 
 import android.app.Activity
 import androidx.compose.foundation.layout.Arrangement

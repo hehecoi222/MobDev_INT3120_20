@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Week4OnClass</string>
+    <string-array name="menu_options">
+        <item>Assignment 1</item>
+        <item>Assignment 2</item>
+    </string-array>
+    <string name="app_title">Welcome Homer</string>
+    <string name="pay_method">Select Pay Method</string>
+    <string name="amount">Amount</string>
+    <string name="donate_btn">Donate</string>
+    <string name="total">Total so Far: %d</string>
+    <string name="name_tf_label">Enter your Name</string>
+    <string name="phone_tf_label">Enter your phone number</string>
+    <string name="summary">Your order</string>
+    <string name="exit_btn">EXIT</string>
+    <string name="order_btn">SMS - PLACE YOUR ORDER</string>
+</resources>

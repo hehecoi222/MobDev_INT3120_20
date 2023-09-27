@@ -1,8 +1,9 @@
-package com.github.hehecoi222.week4slideimpl.presentation.screens
+package com.github.hehecoi222.week5slidesimpl.presentation.screens
 
+import android.app.SearchManager
+import android.content.ComponentName
 import android.content.Intent
 import android.net.Uri
-import android.util.Log
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -62,9 +63,10 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.github.hehecoi222.week4slideimpl.R
-import com.github.hehecoi222.week4slideimpl.presentation.activities.SubActivity
-import com.github.hehecoi222.week4slideimpl.ui.theme.StatusBarColor
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import com.github.hehecoi222.week5slidesimpl.presentation.activities.SubActivity
+import com.github.hehecoi222.week5slidesimpl.ui.theme.StatusBarColor
+import com.github.hehecoi222.week5slidesimpl.R
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -92,20 +94,24 @@ fun MainScreen() {
     var intentMessage by remember {
         mutableStateOf("")
     }
+    val (queryMessage, onQueryMessageChanged) = remember {
+        mutableStateOf("")
+    }
     var resultOnce by remember {
         mutableStateOf(false)
     }
 
     val haptics = LocalHapticFeedback.current
     val context = LocalContext.current
+    val broadcastManager = LocalBroadcastManager.getInstance(context)
     val coroutineScope = rememberCoroutineScope()
     val result = remember { mutableStateOf("") }
-    val launcher =
-        rememberLauncherForActivityResult(contract = ActivityResultContracts.StartActivityForResult(),
-            onResult = {
-                result.value = it.data?.getStringExtra("return").toString()
-                resultOnce = false
-            })
+    val launcher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.StartActivityForResult(),
+        onResult = {
+            result.value = it.data?.getStringExtra("return").toString()
+            resultOnce = false
+        })
 
     StatusBarColor(
         color = when {
@@ -129,9 +135,35 @@ fun MainScreen() {
             }, menuItems = optMenuItems) { text ->
                 optMenuSelectedItem = text
                 when (optMenuSelectedItem) {
-                    optMenuItems.get(0) -> context.startActivity(Intent(context, SubActivity::class.java))
-                    optMenuItems.get(1) -> context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://shopee.vn/")))
-                    optMenuItems.get(2) -> context.startActivity(Intent(Intent.ACTION_DIAL, Uri.parse("tel:911")))
+                    optMenuItems.get(0) -> context.startActivity(
+                        Intent().setAction(Intent.ACTION_SEND).putExtra(Intent.EXTRA_TEXT, "Called")
+                            .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                            .addCategory(Intent.CATEGORY_DEFAULT).setComponent(
+                                ComponentName(
+                                    "com.github.hehecoi222.week4onclass",
+                                    "com.github.hehecoi222.week4onclass.MainActivity"
+                                )
+                            )
+                    )
+
+                    optMenuItems.get(1) -> context.startActivity(
+                        Intent(
+                            Intent.ACTION_VIEW, Uri.parse("https://shopee.vn/")
+                        )
+                    )
+
+                    optMenuItems.get(2) -> context.startActivity(
+                        Intent(
+                            Intent.ACTION_DIAL, Uri.parse("tel:911")
+                        )
+                    )
+
+                    optMenuItems.get(3) -> {
+                        val intent = Intent("com.github.hehecoi222.week5slidesimpl.ACTION_MY_EVENT")
+                        intent.putExtra("message", "Hello, called from MainScreen")
+                        context.sendBroadcast(intent)
+                        broadcastManager.sendBroadcast(intent)
+                    }
                 }
                 coroutineScope.launch {
                     snackBarMessage = "Item $optMenuSelectedItem is selected"
@@ -177,6 +209,15 @@ fun MainScreen() {
                     val intent = Intent(context, SubActivity::class.java)
                     intent.putExtra("message", intentMessage)
                     launcher.launch(intent)
+                },
+                queryMessage = queryMessage,
+                onQuerySearch = onQueryMessageChanged,
+                onQuerySearchSent = {
+                    context.startActivity(
+                        Intent(
+                            Intent.ACTION_WEB_SEARCH
+                        ).putExtra(SearchManager.QUERY, queryMessage)
+                    )
                 })
             result.value.let {
                 if (it != "null" && !resultOnce) {
@@ -207,7 +248,6 @@ fun MainScreen() {
 private suspend fun snackbarCaller(
     snackBarHostState: SnackbarHostState, message: String
 ) {
-    Log.d("SNACKBAR", "Called $message")
     snackBarHostState.currentSnackbarData?.dismiss()
     snackBarHostState.showSnackbar(
         message = message, duration = SnackbarDuration.Short
@@ -276,6 +316,9 @@ private fun MainScreenContainer(
     intentMessage: String = "",
     onIntentMessageChanged: (String) -> Unit = {},
     onIntentMessageSend: () -> Unit = {},
+    onQuerySearch: (String) -> Unit = {},
+    queryMessage: String = "",
+    onQuerySearchSent: () -> Unit = {},
 ) {
     LazyColumn(modifier = modifier, contentPadding = contentPadding) {
         item {
@@ -299,7 +342,9 @@ private fun MainScreenContainer(
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Text(
                             stringResource(id = R.string.long_pressed_btn),
-                            modifier = Modifier.background(MaterialTheme.colorScheme.secondaryContainer).padding(end = 5.dp),
+                            modifier = Modifier
+                                .background(MaterialTheme.colorScheme.secondaryContainer)
+                                .padding(end = 5.dp),
                             color = MaterialTheme.colorScheme.onSecondaryContainer,
                             style = MaterialTheme.typography.labelLarge
                         )
@@ -328,15 +373,20 @@ private fun MainScreenContainer(
             }
         }
         item {
-            Box {
+            Box(modifier = Modifier.wrapContentSize()) {
                 Text(
                     text = stringResource(id = R.string.show_here),
                     modifier = Modifier
                         .fillMaxWidth()
                         .wrapContentSize(Alignment.Center)
                 )
-                DropdownMenu(expanded = menuExpand, onDismissRequest = onDismissMenu, modifier = Modifier.align(
-                    Alignment.BottomCenter)) {
+                DropdownMenu(
+                    expanded = menuExpand,
+                    onDismissRequest = onDismissMenu,
+                    modifier = Modifier.align(
+                        Alignment.BottomCenter
+                    )
+                ) {
                     menuItems.forEach { text ->
                         DropdownMenuItem(text = {
                             Text(text, maxLines = 1, overflow = TextOverflow.Ellipsis)
@@ -359,6 +409,21 @@ private fun MainScreenContainer(
                     onIntentMessageChanged(it)
                 })
                 Button(onClick = onIntentMessageSend) {
+                    Text(text = stringResource(id = R.string.intent_send_btn))
+                }
+            }
+        }
+        item {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                TextField(value = queryMessage, onValueChange = {
+                    onQuerySearch(it)
+                })
+                Button(onClick = onQuerySearchSent) {
                     Text(text = stringResource(id = R.string.intent_send_btn))
                 }
             }
