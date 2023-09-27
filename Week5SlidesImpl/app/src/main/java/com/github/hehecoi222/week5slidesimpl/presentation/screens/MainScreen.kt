@@ -63,6 +63,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.ViewModel
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.github.hehecoi222.week5slidesimpl.presentation.activities.SubActivity
 import com.github.hehecoi222.week5slidesimpl.ui.theme.StatusBarColor
