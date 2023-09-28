@@ -1,10 +1,13 @@
 package com.github.hehecoi222.week5slidesimpl
 
+import android.content.Intent
 import android.content.IntentFilter
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.github.hehecoi222.week5slidesimpl.presentation.screens.MainScreen
 import com.github.hehecoi222.week5slidesimpl.repository.services.MyBroadcastReceiver
 import com.github.hehecoi222.week5slidesimpl.ui.theme.Week5SlidesImplTheme
@@ -40,6 +43,12 @@ class MainActivity : ComponentActivity() {
         } else {
             registerReceiver(receiver, intentFilter, RECEIVER_EXPORTED)
         }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        unregisterReceiver(receiver)
+        Log.d("MainActivity", "onStop unregisterReceiver")
     }
 
     override fun onDestroy() {
