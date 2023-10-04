@@ -23,7 +23,7 @@ abstract class AppRoomDatabase: RoomDatabase() {
                     context.applicationContext,
                     AppRoomDatabase::class.java,
                     "simple_database"
-                ).build()
+                ).allowMainThreadQueries().build()
                 INSTANCE = instance
                 instance
             }

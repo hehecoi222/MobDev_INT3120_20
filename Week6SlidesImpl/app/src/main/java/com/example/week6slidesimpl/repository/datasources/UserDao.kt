@@ -17,7 +17,7 @@ interface UserDao {
     fun getById(userId: Int): User
 
     @Query("SELECT * FROM user WHERE firstName = :firstName AND lastName = :lastName")
-    fun getByName(firstName: String, lastName: String)
+    fun getByName(firstName: String, lastName: String): List<User>
 
     @Insert
     fun insert(vararg user: User)

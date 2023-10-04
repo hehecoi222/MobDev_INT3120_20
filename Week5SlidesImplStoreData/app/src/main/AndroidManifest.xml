@@ -4,7 +4,12 @@
 
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
     <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
-    <uses-permission android:name="android.permission.WRITW_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.example.week6slidesimpl.READ_DATA" />
+
+    <queries>
+        <package android:name="com.example.week6slidesimpl" />
+    </queries>
     <application
         android:name=".MainApplication"
         android:allowBackup="true"

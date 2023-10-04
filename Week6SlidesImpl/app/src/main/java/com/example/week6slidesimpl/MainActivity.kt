@@ -10,6 +10,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.week6slidesimpl.presentation.screens.MainScreen
+import com.example.week6slidesimpl.presentation.viewmodels.MainViewModel
 import com.example.week6slidesimpl.ui.theme.Week6SlidesImplTheme
 
 class MainActivity : ComponentActivity() {
@@ -17,7 +20,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             Week6SlidesImplTheme {
-
+                MainScreen(viewModel(factory = MainViewModel.Factory) as MainViewModel)
             }
         }
     }

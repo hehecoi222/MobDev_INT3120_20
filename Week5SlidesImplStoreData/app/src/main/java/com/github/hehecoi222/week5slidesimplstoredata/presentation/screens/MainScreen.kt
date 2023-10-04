@@ -105,6 +105,26 @@ fun MainScreen(viewModel: MainViewModel = viewModel()) {
                         }
                     )
                 }
+                item {
+                    AddDataField(
+                        modifier = Modifier.fillMaxWidth(),
+                        field = "ContentProvider",
+                        userInputKey = viewModel.userInputKey,
+                        userInputValue = viewModel.userInputValue,
+                        onUserInputKeyChanged = {
+                            viewModel.userInputKey = it
+                        },
+                        onUserInputValueChanged = {
+                            viewModel.userInputValue = it
+                        },
+                        onAddButtonClicked = {
+                            viewModel.onSubmitContentProvider()
+                        },
+                        onNavigateFullList = {
+                            navController.navigate("list-cp")
+                        }
+                    )
+                }
 
             }
         }
@@ -148,6 +168,23 @@ fun MainScreen(viewModel: MainViewModel = viewModel()) {
                 },
                 onRemoveButton = {
                     viewModel.onRemoveRoom(it as SimpleEntity)
+                })
+        }
+        composable("list-cp") {
+            val map = mutableMapOf<String, String>()
+            if (uiState.allUser != null) {
+                uiState.allUser!!.forEach {
+                    map[it[0]] = it[1] + " " + it[2]
+                }
+            }
+            ListScreen(
+                modifier = Modifier.fillMaxSize(),
+                values = map,
+                onLoadButton = {
+                    viewModel.onLoadContentProvider()
+                },
+                onRemoveButton = {
+                    viewModel.onRemoveContentProvider(it as String)
                 })
         }
     }

@@ -1,4 +1,4 @@
-package com.example.week6slidesimpl.provider
+package com.example.week6slidesimpl
 
 import android.content.ContentProvider
 import android.content.ContentUris
@@ -8,13 +8,11 @@ import android.database.Cursor
 import android.database.MatrixCursor
 import android.database.SQLException
 import android.net.Uri
-import com.example.week6slidesimpl.MainApplication
-
 
 private val uriMatcher = UriMatcher(UriMatcher.NO_MATCH).apply {
-    addURI("com.example.week6slidesimpl.provider", "user/#", 1)
-    addURI("com.example.week6slidesimpl.provider", "users", 2)
-    addURI("com.example.week6slidesimpl.provider", "user", 3)
+    addURI("com.example.week6slidesimpl", "user/#", 1)
+    addURI("com.example.week6slidesimpl", "users", 2)
+    addURI("com.example.week6slidesimpl", "user", 3)
 }
 class UserProvider(): ContentProvider() {
     private var databaseAccessRepository = (context?.applicationContext as MainApplication?)?.container?.databaseAccessRepository

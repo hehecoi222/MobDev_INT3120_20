@@ -8,9 +8,11 @@ espresso-core = "3.5.1"
 lifecycle-runtime-ktx = "2.6.1"
 activity-compose = "1.7.0"
 compose-bom = "2023.08.00"
+lifecycle-viewmodel-compose = "2.6.2"
 room-runtime = "2.5.2"
 
 [libraries]
+androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycle-viewmodel-compose" }
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room-runtime" }
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room-runtime" }
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }

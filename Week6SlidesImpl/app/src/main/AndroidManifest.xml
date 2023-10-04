@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+    <permission android:name="com.example.week6slidesimpl.READ_DATA" />
 
     <application
+        android:name=".MainApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -23,6 +25,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:grantUriPermissions="true"
+            android:permission="com.example.week6slidesimpl.READ_DATA"
+            android:authorities="com.example.week6slidesimpl"
+            android:name="com.example.week6slidesimpl.UserProvider"
+            android:exported="true"
+            android:enabled="true"
+            android:readPermission="com.example.week6slidesimpl.READ_DATA">
+
+        </provider>
+
     </application>
 
 </manifest>

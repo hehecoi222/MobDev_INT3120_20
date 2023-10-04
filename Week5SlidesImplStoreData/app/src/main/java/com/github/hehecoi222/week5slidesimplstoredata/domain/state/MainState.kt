@@ -6,6 +6,7 @@ import com.github.hehecoi222.week5slidesimplstoredata.domain.entities.SimpleEnti
 data class MainState(
     val allKeyDS: Map<Preferences.Key<*>, Any>?,
     val allKeyFile: Map<String, String>?,
-    val allKeyRoom: List<SimpleEntity>?
+    val allKeyRoom: List<SimpleEntity>?,
+    val allUser: List<List<String>>?
 ) {
 }
